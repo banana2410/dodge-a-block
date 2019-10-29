@@ -7,11 +7,10 @@ public class Spawner : MonoBehaviour
     public float _timer;
     public float _timeBtwSpawn;
     public Transform[] SpawnPoints;
-    public GameObject prefab;
 
     void Start()
     {
-        _timeBtwSpawn = 1f;
+        _timeBtwSpawn = 2f;
     }
     private void Awake()
     {
@@ -24,14 +23,16 @@ public class Spawner : MonoBehaviour
         _timer += Time.deltaTime;
         if (_timer >= _timeBtwSpawn)
         {
-            int notToSpawn = Random.Range(1, 5);
+            Debug.Log("Spawntime");
+            int notToSpawn = (int)Random.Range(1f, 5f);
             for (int i = 0; i < SpawnPoints.Length - 1; i++)
             {
                 if (i != notToSpawn)
                 {
+                    Debug.Log(i);
                     Block block = BlockPool.Instance.Get();
-                    block.transform.position = SpawnPoints[i].transform.position;
-                    block.transform.rotation = Quaternion.identity;
+                    block.transform.position = SpawnPoints[i+1].transform.position;
+                    block.transform.rotation = Quaternion.identity;                    
                     block.gameObject.SetActive(true);
                 }
                 //reset timer

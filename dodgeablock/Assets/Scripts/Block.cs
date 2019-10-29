@@ -15,6 +15,10 @@ public class Block : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(transform.position.y <-3.5f)
+        {
+            BlockPool.Instance.ReturnToPool(this);
+        }
         
     }
 }
